@@ -68,6 +68,7 @@ async function getLog(_id, opt) {
         },
       }
     );
+    console.log(getExerciseLog.logs.length);
     return getExerciseLog;
   } else {
     getExerciseLog = await Logs.findOne(
