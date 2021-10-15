@@ -47,27 +47,41 @@ async function addToLog(_id, logObj) {
 
 async function getLog(_id, opt) {
   console.log(opt);
-  fromDate = new Date(opt.from).toISOString();
-  toDate = new Date(opt.to).toISOString();
-  console.log(fromDate);
-  console.log(toDate);
-  const getExerciseLog = await Logs.findOne(
-    {
-      _id: id,
-      "log.searchDate": {
-        $gte: fromDate,
-        $lte: toDate,
+  let getExerciseLog;
+  if (opt) {
+    fromDate = new Date(opt.from).toISOString();
+    toDate = new Date(opt.to).toISOString();
+    getExerciseLog = await Logs.findOne(
+      {
+        _id: id,
+        "log.searchDate": {
+          $gte: fromDate,
+          $lte: toDate,
+        },
       },
-    },
-    {
-      __v: 0,
-      log: {
-        $slice: Number(opt.limit),
+      {
+        __v: 0,
+        searchDate: 0,
+        log: {
+          $slice: Number(opt.limit),
+        },
+      }
+    );
+    return getExerciseLog;
+  } else {
+    getExerciseLog = await Logs.findOne(
+      {
+        _id: id,
       },
-    }
-  );
+      {
+        __v: 0,
+        searchDate: 0,
+      }
+    );
+    return getExerciseLog;
+  }
 
-  return getExerciseLog;
+  //return getExerciseLog;
 }
 
 module.exports = {
