@@ -33,19 +33,23 @@ app.get("/api/users", async (req, res) => {
   res.json(usernameList);
 });
 
+app.post("/api/users/:_id/exercises", async (req, res) => {
+  id = req.params._id;
+  const username = await helperFunctions.getUsername(id);
+  //console.log(username);
+  //console.log(req.body);
+  const logObj = {
+    description: req.body.description,
+    duration: req.body.duration,
+    date: req.body.date
+      ? req.body.date.toDateString()
+      : new Date().toDateString(),
+  };
+  const logObjUpdate = await helperFunctions.addToLog(id, logObj);
+  console.log(logObjUpdate);
+  res.json(logObjUpdate);
+});
+
 const listener = app.listen(process.env.PORT || 3000, () => {
   console.log("Your app is listening on port " + listener.address().port);
 });
-
-// async function insertUsername(username) {
-//   const toCreateUsername = { username };
-//   const users = await Users.create(toCreateUsername);
-//   return users;
-// }
-
-// async function fetchAllUsername() {
-//   const usernameCollection = await Users.find();
-
-//   console.log(usernameCollection);
-//   return usernameCollection;
-// }
