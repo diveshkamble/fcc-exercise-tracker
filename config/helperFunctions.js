@@ -76,7 +76,7 @@ async function getLog(_id, opt) {
   } else {
     console.log(id);
     console.log("lololo");
-    getExerciseLog = await Logs.findOne(
+    getExerciseLog1 = await Logs.findOne(
       {
         _id: id,
       },
@@ -85,7 +85,7 @@ async function getLog(_id, opt) {
         //searchDate: 0,
       }
     );
-    return getExerciseLog;
+    return getExerciseLog1;
   }
 
   //return getExerciseLog;
