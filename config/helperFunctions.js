@@ -51,6 +51,7 @@ async function getLog(_id, opt) {
   if (opt) {
     fromDate = new Date(opt.from).toISOString();
     toDate = new Date(opt.to).toISOString();
+    if (opt.limit === undefined) opt.limit = 100;
     getExerciseLog = await Logs.findOne(
       {
         _id: id,
