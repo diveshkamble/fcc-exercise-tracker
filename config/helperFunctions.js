@@ -74,6 +74,8 @@ async function getLog(_id, opt) {
     console.log("count:" + getExerciseLog.log.length);
     return getExerciseLog;
   } else {
+    console.log(id);
+    console.log("lololo");
     getExerciseLog = await Logs.findOne(
       {
         _id: id,
