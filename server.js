@@ -36,8 +36,6 @@ app.get("/api/users", async (req, res) => {
 app.post("/api/users/:_id/exercises", async (req, res) => {
   id = req.params._id;
   const username = await helperFunctions.getUsername(id);
-  //console.log(username);
-  //console.log(req.body);
   const logObj = {
     description: req.body.description,
     duration: req.body.duration,
@@ -46,7 +44,6 @@ app.post("/api/users/:_id/exercises", async (req, res) => {
       : new Date().toDateString(),
   };
   const logObjUpdate = await helperFunctions.addToLog(id, logObj);
-  console.log(logObjUpdate);
   res.json(logObjUpdate);
 });
 

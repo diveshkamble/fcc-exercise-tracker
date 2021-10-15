@@ -35,11 +35,11 @@ async function addToLog(_id, logObj) {
     }
   );
   const itemToReturn = {
-    username: usernameObj[0].username,
-    description: logObj.description,
-    duration: logObj.duration,
-    date: logObj.date,
     _id: _id,
+    username: usernameObj[0].username,
+    date: logObj.date,
+    duration: Number(logObj.duration),
+    description: logObj.description,
   };
 
   return itemToReturn;
