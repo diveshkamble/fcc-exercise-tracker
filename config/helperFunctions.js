@@ -47,12 +47,12 @@ async function addToLog(_id, logObj) {
 
 async function getLog(_id, opt) {
   console.log(opt);
-  let getExerciseLog;
+  // let getExerciseLog;
   if (opt) {
     fromDate = new Date(opt.from).toISOString();
     toDate = new Date(opt.to).toISOString();
     if (opt.limit === undefined) opt.limit = 100;
-    getExerciseLog = await Logs.findOne(
+    const getExerciseLog = await Logs.findOne(
       {
         _id: id,
         "log.searchDate": {
@@ -76,7 +76,7 @@ async function getLog(_id, opt) {
   } else {
     console.log(id);
     console.log("lololo");
-    getExerciseLog1 = await Logs.findOne(
+    const getExerciseLog1 = await Logs.findOne(
       {
         _id: id,
       },
