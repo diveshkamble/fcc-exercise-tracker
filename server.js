@@ -47,6 +47,12 @@ app.post("/api/users/:_id/exercises", async (req, res) => {
   res.json(logObjUpdate);
 });
 
+app.get("/api/users/:_id/logs", async (req, res) => {
+  id = req.params._id;
+  const getLog = await helperFunctions.getLog(id);
+  res.json(getLog);
+});
+
 const listener = app.listen(process.env.PORT || 3000, () => {
   console.log("Your app is listening on port " + listener.address().port);
 });

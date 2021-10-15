@@ -45,4 +45,15 @@ async function addToLog(_id, logObj) {
   return itemToReturn;
 }
 
-module.exports = { insertUsername, fetchAllUsername, getUsername, addToLog };
+async function getLog(_id) {
+  const getExerciseLog = await Logs.findOne({ _id: id }).select(["-__v"]);
+  return getExerciseLog;
+}
+
+module.exports = {
+  insertUsername,
+  fetchAllUsername,
+  getUsername,
+  addToLog,
+  getLog,
+};
