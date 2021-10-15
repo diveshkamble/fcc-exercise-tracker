@@ -50,9 +50,20 @@ app.post("/api/users/:_id/exercises", async (req, res) => {
   res.json(logObjUpdate);
 });
 
-app.get("/api/users/:_id/logs", async (req, res) => {
+app.get("/api/users/:_id/logs?", async (req, res) => {
   id = req.params._id;
-  const getLog = await helperFunctions.getLog(id);
+  let opt = {};
+  if (req.query.from != undefined) {
+    const { from, to, limit } = req.query;
+    opt = {
+      from,
+      to,
+      limit,
+    };
+  } else {
+    opt = null;
+  }
+  const getLog = await helperFunctions.getLog(id, opt);
   res.json(getLog);
 });
 
