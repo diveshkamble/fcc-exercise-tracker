@@ -13,6 +13,10 @@ const subSchema = new mongoose.Schema({
     type: String,
     required: false,
   },
+  searchDate: {
+    type: Date,
+    require: false,
+  },
 
   _id: false,
 });

@@ -46,7 +46,26 @@ async function addToLog(_id, logObj) {
 }
 
 async function getLog(_id) {
-  const getExerciseLog = await Logs.findOne({ _id: id }).select(["-__v"]);
+  const getExerciseLog = await Logs.findOne(
+    { _id: id },
+    { __v: 0, log: { searchDate: 0 } }
+  );
+  // const getExerciseLog = await Logs.aggregate([
+  //   { $match: { _id: id } },
+  //   {
+  //     $project: {
+  //       _id: 1,
+  //       username: 1,
+  //       count: 1,
+  //       log: {
+  //         description: 1,
+  //         duration: 1,
+  //         date: 1,
+  //       },
+  //     },
+  //   },
+  // ]);
+  console.log(getExerciseLog);
   return getExerciseLog;
 }
 
