@@ -6,7 +6,7 @@ const subSchema = new mongoose.Schema({
     required: false,
   },
   duration: {
-    type: String,
+    type: Number,
     required: false,
   },
   date: {
