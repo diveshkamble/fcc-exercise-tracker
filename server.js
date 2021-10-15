@@ -40,7 +40,7 @@ app.post("/api/users/:_id/exercises", async (req, res) => {
     description: req.body.description,
     duration: req.body.duration,
     date: req.body.date
-      ? req.body.date.toDateString()
+      ? new Date(req.body.date).toDateString()
       : new Date().toDateString(),
   };
   const logObjUpdate = await helperFunctions.addToLog(id, logObj);
