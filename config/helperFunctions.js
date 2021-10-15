@@ -82,7 +82,7 @@ async function getLog(_id, opt) {
       },
       {
         __v: 0,
-        searchDate: 0,
+        //searchDate: 0,
       }
     );
     return getExerciseLog;
