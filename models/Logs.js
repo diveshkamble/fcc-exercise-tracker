@@ -10,7 +10,7 @@ const subSchema = new mongoose.Schema({
     required: false,
   },
   date: {
-    type: Date,
+    type: String,
     required: false,
   },
 
