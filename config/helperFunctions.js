@@ -62,9 +62,12 @@ async function getLog(_id, opt) {
       },
       {
         __v: 0,
-        searchDate: 0,
+
         log: {
           $slice: Number(opt.limit),
+        },
+        log: {
+          searchDate: 0,
         },
       }
     );
