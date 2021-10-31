@@ -86,9 +86,9 @@ async function getLog(_id, opt) {
 
     //console.log(newLogArray);
     let newExerciseLog = {
+      _id: getExerciseLog._id,
       username: getExerciseLog.username,
       count: getExerciseLog.count,
-      _id: getExerciseLog._id,
       log: newLogArray,
     };
     return newExerciseLog;
