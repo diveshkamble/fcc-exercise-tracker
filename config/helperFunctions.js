@@ -52,7 +52,7 @@ async function getLog(_id, opt) {
     fromDate = new Date(opt.from).toISOString();
     toDate = new Date(opt.to).toISOString();
     if (opt.limit === undefined) opt.limit = 100;
-    const getExerciseLog = await Logs.findOne(
+    let getExerciseLog = await Logs.findOne(
       {
         _id: id,
         "log.searchDate": {
@@ -66,13 +66,32 @@ async function getLog(_id, opt) {
         log: {
           $slice: Number(opt.limit),
         },
-        log: {
-          searchDate: 0,
-        },
+        //log: {
+        // searchDate: 0,
+        //},
       }
     );
-    console.log("count:" + getExerciseLog.log.length);
-    return getExerciseLog;
+
+    let logArray = getExerciseLog.log;
+    logArray.sort((a, b) => {
+      return b.searchDate - a.searchDate;
+    });
+    //console.log(logArray);
+
+    let newLogArray = logArray.map((logs) => ({
+      description: logs.description,
+      duration: logs.duration,
+      date: logs.date,
+    }));
+
+    //console.log(newLogArray);
+    let newExerciseLog = {
+      username: getExerciseLog.username,
+      count: getExerciseLog.count,
+      _id: getExerciseLog._id,
+      log: newLogArray,
+    };
+    return newExerciseLog;
   } else {
     console.log(id);
     console.log("lololo");
@@ -82,7 +101,7 @@ async function getLog(_id, opt) {
       },
       {
         __v: 0,
-        //searchDate: 0,
+        searchDate: 0,
       }
     );
     return getExerciseLog1;
