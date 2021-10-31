@@ -46,9 +46,11 @@ async function addToLog(_id, logObj) {
 }
 
 async function getLog(_id, opt) {
+  console.log("in get Log");
   console.log(opt);
   // let getExerciseLog;
-  if (opt.fromDate) {
+  if (opt.fromDate != null && opt != null) {
+    console.log("11");
     console.log("in opt");
     console.log(opt);
     fromDate = new Date(opt.from).toISOString();
@@ -97,6 +99,7 @@ async function getLog(_id, opt) {
     };
     return newExerciseLog;
   } else if (opt.limit) {
+    console.log("12");
     const getExerciseLog2 = await Logs.findOne(
       {
         _id: id,
@@ -128,6 +131,7 @@ async function getLog(_id, opt) {
 
     return newExerciseLog;
   } else {
+    console.log("13");
     const getExerciseLog1 = await Logs.findOne(
       {
         _id: id,

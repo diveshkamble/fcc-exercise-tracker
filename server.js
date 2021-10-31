@@ -53,22 +53,31 @@ app.post("/api/users/:_id/exercises", async (req, res) => {
 app.get("/api/users/:_id/logs?", async (req, res) => {
   id = req.params._id;
   console.log(req.query);
+  console.log(req.query.from);
+  console.log(req.query.to);
   let opt = {};
-  if (req.query.from != undefined) {
+  if (req.query != null && req.from != undefined) {
+    console.log("1");
     const { from, to, limit } = req.query;
     opt = {
       from,
       to,
       limit,
     };
-  } else if (req.query.limit != undefined) {
+  } else if (req.query.limit != undefined && req.query != null) {
+    console.log("2");
     opt = {
       from: null,
       to: null,
       limit: req.query.limit,
     };
   } else {
-    opt = null;
+    console.log("3");
+    opt = {
+      from: null,
+      to: null,
+      limit: null,
+    };
   }
   const getLog = await helperFunctions.getLog(id, opt);
   res.json(getLog);
