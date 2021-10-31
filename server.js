@@ -52,6 +52,7 @@ app.post("/api/users/:_id/exercises", async (req, res) => {
 
 app.get("/api/users/:_id/logs?", async (req, res) => {
   id = req.params._id;
+  console.log(req.query);
   let opt = {};
   if (req.query.from != undefined) {
     const { from, to, limit } = req.query;
@@ -59,6 +60,12 @@ app.get("/api/users/:_id/logs?", async (req, res) => {
       from,
       to,
       limit,
+    };
+  } else if (req.query.limit != undefined) {
+    opt = {
+      from: null,
+      to: null,
+      limit: req.query.limit,
     };
   } else {
     opt = null;
