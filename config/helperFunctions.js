@@ -88,6 +88,8 @@ async function getLog(_id, opt) {
     let newExerciseLog = {
       _id: getExerciseLog._id,
       username: getExerciseLog.username,
+      from: new Date(opt.from).toDateString(),
+      to: new Date(opt.to).toDateString(),
       count: getExerciseLog.count,
       log: newLogArray,
     };
